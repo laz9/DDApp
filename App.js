@@ -9,6 +9,7 @@ import MineScreen from './src/navPages/MineScreen';
 import StatiScreen from './src/navPages/StatiScreen';
 import showSayingList from './src/sayings/ShowSayingList'
 import setSaying from './src/sayings/SetSaying'
+import testPage from './testPage'
 
 
 const Tab = createBottomTabNavigator();
@@ -22,38 +23,26 @@ function SayingStackScreen(){
       component={MineScreen} options={{headerShown:false}}/>
       <sayingStack.Screen name="sayinglist"
       component={showSayingList} 
-      options={{
-        headerTitleStyle:{
-          alignSelf:'center',
-          textAlign: 'center',
-          flex:1,
-        },
-        title:"我的日签",
-        // headerTitle:(
-        //   <View style={{}}><Text style={{textAlign:"center"}}>我的日签</Text></View>
-        // ),
-        
-        // headerTitle: props => <LogoTitle {...props} />,
-        headerRight: () => (
-          // <Button
-          //   onPress={() => alert('This is a button!')}
-          //   title="Info"
-          //   color="#fff"
-          // />
-          <View>
-            <Image source=""></Image>
-          </View>
-        ),
-      }}/>
+      options={{ headerShown: false }}
+      />
       <sayingStack.Screen name="setsaying"
-      component={setSaying}
-      options={{
-        title:"编辑日签"
-      }}/>
+      component={setSaying} options={{ headerShown:false }}/>
     </sayingStack.Navigator>
   );
 }
 
+
+const testStack=createStackNavigator();
+function testStackScreen(){
+  return (
+    <testStack.Navigator>
+      <testStack.Screen name="home"
+      component={StatiScreen} />
+      <testStack.Screen name="test"
+      component={testPage} />
+    </testStack.Navigator>
+  );
+}
 
 export default function App() {
     console.log("aaaaaaaaaaaaaaaaaaaaa");
@@ -130,7 +119,7 @@ export default function App() {
         }}
       >
         <Tab.Screen name="习惯" component={CustomScreen} options={{ headerShown: false }} />
-        <Tab.Screen name="统计" component={StatiScreen}  options={{ headerShown: false }}/>
+        <Tab.Screen name="统计" component={testStackScreen}  options={{ headerShown: false }}/>
         <Tab.Screen name="日记" component={DiaryScreen}  options={{ headerShown: false }} />
         <Tab.Screen name="我的" component={SayingStackScreen}  options={{ headerShown: false }}/>
       </Tab.Navigator>

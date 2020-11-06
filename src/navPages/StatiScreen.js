@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View ,Button} from 'react-native';
 
 
 export default class StatisticScreen extends Component  {
@@ -20,6 +20,8 @@ export default class StatisticScreen extends Component  {
                 alignItems: "center"
               }}>
               <Text>统计页</Text>
+              <Button title="跳转" onPress={()=>this.props.navigation.navigate("test")}></Button>
+
             </View>
           );
     }
