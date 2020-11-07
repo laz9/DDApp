@@ -10,26 +10,72 @@ import StatiScreen from './src/navPages/StatiScreen';
 import showSayingList from './src/sayings/ShowSayingList'
 import setSaying from './src/sayings/SetSaying'
 import testPage from './testPage'
-
+import Login from './src/loginRegister/Login'
+import Register from './src/loginRegister/Register'
+import Profile from './src/loginRegister/Profile'
 
 const Tab = createBottomTabNavigator();
 
-
-const sayingStack=createStackNavigator();
-function SayingStackScreen(){
+const MineStack=createStackNavigator();
+function MineStackScreen(){
   return (
-    <sayingStack.Navigator>
-      <sayingStack.Screen name="card"
+    <MineStack.Navigator>
+      <MineStack.Screen name="mine"
       component={MineScreen} options={{headerShown:false}}/>
-      <sayingStack.Screen name="sayinglist"
+      <MineStack.Screen name="sayinglist"
       component={showSayingList} 
       options={{ headerShown: false }}
       />
-      <sayingStack.Screen name="setsaying"
+      <MineStack.Screen name="setsaying"
       component={setSaying} options={{ headerShown:false }}/>
-    </sayingStack.Navigator>
+       <MineStack.Screen name="login"
+      component={Login} 
+      options={{ 
+        headerTitle:(
+          <Text style={{flex:1,textAlign:'center'}}>登录</Text>
+        ),
+        // headerRight: (
+        // <View><Text></Text></View>
+        // )
+        
+       }}
+      />
+      <MineStack.Screen name="register"
+      component={Register} options={{ 
+        headerTitle:(
+          <Text style={{flex:1,textAlign:'center'}}>注册</Text>
+        ),
+      }}
+      />
+      <MineStack.Screen name="profile"
+      component={Profile} options={{ 
+        headerTitle:(
+          <Text style={{flex:1,textAlign:'center'}}>个人资料</Text>
+        ),
+      }}
+      />
+    </MineStack.Navigator>
+    
   );
 }
+
+
+const LoginRegisterStack=createStackNavigator();
+function LoginRegisterStackScreen(){
+  return (
+    <LoginRegisterStack.Navigator>
+      <LoginRegisterStack.Screen name="infocard"
+      component={MineScreen} options={{headerShown:false}}/>
+      <LoginRegisterStack.Screen name="login"
+      component={Login} 
+      options={{  }}
+      />
+      <LoginRegisterStack.Screen name="register"
+      component={Register} options={{ }}/>
+    </LoginRegisterStack.Navigator>
+  );
+}
+
 
 
 const testStack=createStackNavigator();
@@ -121,7 +167,7 @@ export default function App() {
         <Tab.Screen name="习惯" component={CustomScreen} options={{ headerShown: false }} />
         <Tab.Screen name="统计" component={testStackScreen}  options={{ headerShown: false }}/>
         <Tab.Screen name="日记" component={DiaryScreen}  options={{ headerShown: false }} />
-        <Tab.Screen name="我的" component={SayingStackScreen}  options={{ headerShown: false }}/>
+        <Tab.Screen name="我的" component={MineStackScreen}  options={{ headerShown: false }}/>
       </Tab.Navigator>
     </NavigationContainer>
   );

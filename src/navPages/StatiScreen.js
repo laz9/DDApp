@@ -10,7 +10,6 @@ export default class StatisticScreen extends Component  {
       };
     }
 
-
     render(){
         return (
             <View
@@ -21,7 +20,6 @@ export default class StatisticScreen extends Component  {
               }}>
               <Text>统计页</Text>
               <Button title="跳转" onPress={()=>this.props.navigation.navigate("test")}></Button>
-
             </View>
           );
     }

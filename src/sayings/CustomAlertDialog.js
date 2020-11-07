@@ -12,7 +12,7 @@ export default class CustomAlertDialog extends Component {
         this.entityList = this.props.entityList;
     }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         this.setState({isVisible: nextProps.show});
     }
 
