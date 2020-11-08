@@ -28,7 +28,13 @@ export default class Profile extends Component  {
                     <Text>简介</Text><Image style={{width:16,height:16}} source={require('../../img/inright.png')}></Image>
                 </View>
                 <TouchableWithoutFeedback
-                    onPress={()=>this.props.navigation.navigate('mine')}    
+                    
+                    onPress={()=>{
+                      global.storage.loginout=true;
+                      this.props.route.params.refresh();
+                      this.props.navigation.goBack();
+                    }  
+                  }  
                 >
                 <View style={{flexDirection:"row",justifyContent:"center",alignItems:"center", width:350,height:60}}>
                     <Text style={{color:"#DC143C",fontSize:20}}>退出登录</Text>

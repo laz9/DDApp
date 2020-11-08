@@ -34,13 +34,28 @@ export default class MineScreen extends Component{
       infocardhint:"",
       islogin:true,
       username:"wsy",
+      temp:false,
       sayingcardcontent:"大风吹着我和山岗，我的面前有一万座村庄，我的身后有一万座村庄，千灯万盏，我只有一轮月亮。"
     }
   
+  
+  }
+
+  init(){
+    if(global.storage.loginout){
+      this.setState({islogin:false});
+    }
+    else{
+      this.setState({islogin:true});
+    }
+
   }
 
 
   UNSAFE_componentWillMount(){
+   
+
+
     if(!this.state.islogin){
       this.setState({infocardhint:"您还未登录"});
     }
@@ -73,8 +88,20 @@ export default class MineScreen extends Component{
           
           <TouchableHighlight
             style={styles.infocard}
-           onPress={()=> this.setState({islogin:!this.state.islogin})||
-            this.state.islogin?this.props.navigation.navigate('profile'):this.props.navigation.navigate('login')}
+           onPress={()=>
+            this.state.islogin?
+            this.props.navigation.navigate('profile',{
+              id: this.state.id,
+              refresh:()=>{
+                init();
+              }
+              // refresh: function () {
+              //     this.init();
+              // }
+          }):
+            this.props.navigation.navigate('login')
+            || this.setState({temp:!this.setState.temp})
+          }
            underlayColor="#c5c5c5"
             > 
           <View>
