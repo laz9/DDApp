@@ -34,6 +34,7 @@ export default class MineScreen extends Component{
       infocardhint:"",
       islogin:true,
       username:"wsy",
+      temp:false,
       sayingcardcontent:"大风吹着我和山岗，我的面前有一万座村庄，我的身后有一万座村庄，千灯万盏，我只有一轮月亮。"
     }
 
@@ -41,11 +42,22 @@ export default class MineScreen extends Component{
     this.changeInfoCardHint=this.changeInfoCardHint.bind(this);
     
   
+  
+  }
+
+  init(){
+    if(global.storage.loginout){
+      this.setState({islogin:false});
+    }
+    else{
+      this.setState({islogin:true});
+    }
+
   }
 
   changeInfoCardHint(){
-    console.log("1");
-    console.log(this.state.islogin);
+   
+  
     if(!this.state.islogin){
       console.log("4");
       this.setState({infocardhint:"您还未登录"});
@@ -103,6 +115,7 @@ export default class MineScreen extends Component{
             }
             )
             :this.props.navigation.navigate('login')}
+
            underlayColor="#c5c5c5"
             > 
           <View>

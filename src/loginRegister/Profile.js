@@ -32,6 +32,7 @@ export default class Profile extends Component  {
                     this.props.route.params.refresh();
                     this.props.navigation.navigate('mine')
                   }}    
+
                 >
                 <View style={{flexDirection:"row",justifyContent:"center",alignItems:"center", width:350,height:60}}>
                     <Text style={{color:"#DC143C",fontSize:20}}>退出登录</Text>
