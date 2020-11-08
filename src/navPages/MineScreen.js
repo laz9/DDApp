@@ -20,8 +20,8 @@ function getDiffDate(year,month,day) {
   let date1 = new Date();
   let date2 = new Date();
   date1 = new Date(year, month,day);
-  date2 = new Date(date2.getFullYear(), date2.getMonth(), date2.getDate());
-  const diff = date1.getTime() - date2.getTime();
+  date2 = new Date(date2.getFullYear(), date2.getMonth()+1, date2.getDate());
+  const diff = date2.getTime() - date1.getTime();
   const diffDate = diff / (24 * 60 * 60 * 1000);
   return diffDate;
 }
@@ -36,12 +36,18 @@ export default class MineScreen extends Component{
       username:"wsy",
       sayingcardcontent:"大风吹着我和山岗，我的面前有一万座村庄，我的身后有一万座村庄，千灯万盏，我只有一轮月亮。"
     }
+
+    this.init=this.init.bind(this);
+    this.changeInfoCardHint=this.changeInfoCardHint.bind(this);
+    
   
   }
 
-
-  UNSAFE_componentWillMount(){
+  changeInfoCardHint(){
+    console.log("1");
+    console.log(this.state.islogin);
     if(!this.state.islogin){
+      console.log("4");
       this.setState({infocardhint:"您还未登录"});
     }
     else if(hour>=4&&hour<8){
@@ -58,7 +64,23 @@ export default class MineScreen extends Component{
     }
   }
 
+  UNSAFE_componentWillMount(){
+    this.changeInfoCardHint();
+  }
+
+  init(){
+    this.setState({islogin:!this.state.islogin},
+      function(){
+        this.changeInfoCardHint();
+      });
+    
+  
+  }
+
+
   render(){
+    console.log(this.state.islogin);
+
 
   return (
     <View style={styles.container}>
@@ -73,8 +95,14 @@ export default class MineScreen extends Component{
           
           <TouchableHighlight
             style={styles.infocard}
-           onPress={()=> this.setState({islogin:!this.state.islogin})||
-            this.state.islogin?this.props.navigation.navigate('profile'):this.props.navigation.navigate('login')}
+           onPress={()=> 
+            // this.setState({islogin:!this.state.islogin})||
+            this.state.islogin?
+            this.props.navigation.navigate('profile',{
+              refresh:()=>this.init()
+            }
+            )
+            :this.props.navigation.navigate('login')}
            underlayColor="#c5c5c5"
             > 
           <View>

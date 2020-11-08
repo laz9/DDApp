@@ -6,6 +6,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { TextInput, TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 export default class DiaryScreen extends Component  {
+  constructor(){
+    super();
+    this.state={
+      username:"",
+      password:"",
+    }
+  }
     render(){
         return (
             <View
@@ -22,13 +29,21 @@ export default class DiaryScreen extends Component  {
                 <TextInput
                     style={{ backgroundColor:"#f5f5f5", width:300,borderRadius:5,marginBottom:20, borderWidth: 0,fontSize:18 }}
                     placeholder="输入用户名"
+                    onChangeText={(username) => this.setState({username})}
                 />
                 <TextInput
                     secureTextEntry={true} 
                     style={{ backgroundColor:"#f5f5f5", width:300,borderRadius:5, borderWidth: 0,fontSize:18 }}
                     placeholder="输入密码"
+                    onChangeText={(password) => this.setState({password})}
                 />
-                <TouchableOpacity style={{backgroundColor:"#00BFFF",width:200,height:50,borderRadius:10,marginTop:50,justifyContent:"center",alignItems:"center"}}>
+                <TouchableOpacity style={{backgroundColor:"#00BFFF",width:200,height:50,borderRadius:10,marginTop:50,justifyContent:"center",alignItems:"center"}}
+                  onPress={
+                    ()=>{
+
+                    }
+                  }
+                >
                     <Text style={{color:"#fff",fontSize:18}}>注册</Text>
                 </TouchableOpacity>
                 <View style={{flexDirection:"row",justifyContent:"space-around",marginTop:30}}>

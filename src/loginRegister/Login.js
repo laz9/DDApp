@@ -6,6 +6,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { TextInput, TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 export default class DiaryScreen extends Component  {
+
+    constructor(){
+        super();
+        this.state={
+            username:"",
+            password:""
+        }
+    }
     render(){
         return (
             <View
@@ -22,13 +30,22 @@ export default class DiaryScreen extends Component  {
                 <TextInput
                     style={{ backgroundColor:"#f5f5f5", width:300,borderRadius:5,marginBottom:20, borderWidth: 0,fontSize:18 }}
                     placeholder="输入用户名"
+                    onChangeText={(username) => this.setState({username})}
+
                 />
                 <TextInput
                     secureTextEntry={true} 
                     style={{ backgroundColor:"#f5f5f5", width:300,borderRadius:5, borderWidth: 0,fontSize:18 }}
                     placeholder="输入密码"
+                    onChangeText={(password) => this.setState({password})}
+
                 />
-                <TouchableOpacity style={{backgroundColor:"#4682B4",width:200,height:50,borderRadius:10,marginTop:50,justifyContent:"center",alignItems:"center"}}>
+                <TouchableOpacity 
+                 onPress={()=>{
+                    // this.props.route.params.refresh();
+                    this.props.navigation.navigate('mine')
+                  }}    
+                style={{backgroundColor:"#4682B4",width:200,height:50,borderRadius:10,marginTop:50,justifyContent:"center",alignItems:"center"}}>
                     <Text style={{color:"#fff",fontSize:18}}>登录</Text>
                 </TouchableOpacity>
                 <View style={{flexDirection:"row",justifyContent:"space-around",marginTop:30}}>
