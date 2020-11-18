@@ -47,6 +47,7 @@ export default class ShowSayingList extends Component{
             </View>         
             <FlatList
             // data={[{key: 'a'}, {key: 'b'}]}
+                keyExtractor={(item, index) => index.toString()}
                 data={sayings}
                 renderItem={this._renderItem}/>
                 
