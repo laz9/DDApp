@@ -1,6 +1,7 @@
 import React, {Component} from "react";
-import {StyleSheet, Text, TouchableHighlight, View,} from 'react-native';
+import {StyleSheet, Text, TouchableHighlight, View,TextInput} from 'react-native';
 import CustomAlertDialog from "./src/sayings/CustomAlertDialog";
+import StorageUtil from './src/utils/StorageUtil'
 
 const typeArr = ["平静","开心", "焦虑", "无聊","悲伤","恐惧","生气","激动","期待"];
 
@@ -8,50 +9,86 @@ export default class TestCustomAlert extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            typeName: '性别',
-            type: 0,
-            showTypePop: false,
+            text1:"",
+            text2:"",
+            text3:""
         }
     }
+    
+    
 
-    _openTypeDialog() {
-        this.setState({showTypePop: !this.state.showTypePop})
+    _saveData(){
+
+        const texts={
+            text1:this.state.text1,
+            text2:this.state.text2,
+            text3:this.state.text3,
+    }
+        let key="ts"
+        
+
+        StorageUtil.save(key,texts);
+        alert("保存成功");
+
+
+    }
+
+    _openDialog() {
+
+        let key="ts"
+
+        var getdata= StorageUtil.get(key).then((row)=>{
+            if(row){
+               
+                alert("您保存的数据是"+row["text1"]);
+
+            }
+            else{
+                console.log("null")
+            }
+        }).then(
+            console.log(getdata)&&
+        alert("您保存的数据是"+getdata["text1"]));
     }
 
     render() {
-        loginButton = <Button
-                    onPress={this._onPressLogin}
-                    title="Login"/>
- 
-    logoutButton = <Button
-                    onPress={this._onPressLogout}
-                    title="Logout"/>
- 
-    return (
-      <View style={styles.container}>
-        <Text> {loginStatus} </Text>
-        {this.state.currentUserId !== undefined ? logoutButton : loginButton}
-      </View>
-    );
 
         return (
-            <View style={{flex: 1}}>
+            <View style={{}}>
+                <View style={{alignItems:"center",justifyContent:"center"}}>
 
-                <TouchableHighlight onPress={() => this._openTypeDialog()} style={styles.button}
+                <TextInput
+                    style={{ backgroundColor:"#fff", width:300,borderRadius:5,marginBottom:20, borderWidth: 0,fontSize:18 }}
+                    placeholder="text1"
+                    onChangeText={(text1) => this.setState({text1})}
+
+                />
+                <TextInput
+                    style={{ backgroundColor:"#fff", width:300,borderRadius:5,marginBottom:20, borderWidth: 0,fontSize:18 }}
+                    placeholder="text2"
+                    onChangeText={(text2) => this.setState({text2})}
+
+                />
+                <TextInput
+                    style={{ backgroundColor:"#fff", width:300,borderRadius:5,marginBottom:20, borderWidth: 0,fontSize:18 }}
+                    placeholder="text3"
+                    onChangeText={(text3) => this.setState({text3})}
+
+                />
+               
+                </View>
+
+
+                <TouchableHighlight onPress={() => this._saveData()} style={styles.button}
                                     underlayColor="#a5a5a5">
-                    <Text>{this.state.typeName}-{this.state.type}</Text>
+                    <Text>保存</Text>
+                </TouchableHighlight>
+                <TouchableHighlight onPress={() => this._openDialog()} style={styles.button}
+                                    underlayColor="#a5a5a5">
+                    <Text>查询</Text>
                 </TouchableHighlight>
 
-                <CustomAlertDialog entityList={typeArr} callback={(i) => {
-                    this.setState({
-                        type: i,
-                        typeName: typeArr[i],
-                    })
-                }} show={this.state.showTypePop} closeModal={(show) => {
-                    this.setState({
-                        showTypePop: show
-                    })
-                }}/>
+               
             </View>
         );
 

@@ -19,6 +19,7 @@ function getWeekDate() {
   return week;
 }
 var todaydairy={
+        "key":nowyear.toString()+nowmonth.toString()+nowday.toString(),
         "day":nowday,
         "month":nowmonth,
         "year":nowyear,
@@ -29,14 +30,30 @@ var todaydairy={
         ]
 }
 
+console.log(dairy);
+
 
 export default class DiaryScreen extends Component  {
+  constructor(){
+    super();
+    this.state={
+      addtoday:false,
+    }
+  }
+
+  UNSAFE_componentWillMount(){
+    if(this.state.addtoday){
+      dairy.unshift(todaydairy);
+      this.setState({addtoday:true})
+    }
+
+  }
 
   // FlatList渲染
   _renderItem=({item})=>{
     var viewtimeline=[];
 
-    console.log(item);
+    // console.log(item);
     if(item.time){
       // 渲染第一个内容
       viewtimeline.push(
@@ -88,11 +105,20 @@ export default class DiaryScreen extends Component  {
           {/* 如果item中的年月日和今天获取到的年月日相同，则渲染记录按钮 */}
           {item.year==nowyear&&item.month==nowmonth&&item.day==nowday ?
           <TouchableOpacity style={{
-
+            borderRadius:5,
+            borderWidth:1,
+            borderColor:"#00bfff",
+            alignItems:"center",
+            justifyContent:"center",
+            height:36,
+            width:150,
+            marginTop:15,
+            elevation:-2
           }}
           >
-            <Text>去记录一下吧~</Text>
-          </TouchableOpacity>:<View style={{flex:1}}></View>}
+            <Text style={{color:"#00bfff",fontWeight:"100",fontSize:12}}>去记录一下吧~</Text>
+          </TouchableOpacity>:
+          <View style={{flex:1}}></View>}
           
 
           <View style={{flex:1}}></View>
