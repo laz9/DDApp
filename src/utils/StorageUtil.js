@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Value } from 'react-native-reanimated';
 
 
 class StorageUtil {
@@ -12,6 +13,7 @@ class StorageUtil {
         return AsyncStorage.getItem(key).then((value) => {
             const jsonValue = JSON.parse(value);
             return jsonValue;
+            // return value;
         });
     }
 

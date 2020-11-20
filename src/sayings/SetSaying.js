@@ -3,9 +3,28 @@ import { Text, View,StyleSheet,Image,TouchableHighlight, Button,Dimensions,TextI
 import { LongPressGestureHandler } from 'react-native-gesture-handler';
 import { color } from 'react-native-reanimated';
 import CustomAlertDialog from "./CustomAlertDialog";
+import StorageUtil from '../utils/StorageUtil';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
+const USER_1 = {
+    name: 'Tom',
+    age: 20,
+    traits: {
+      hair: 'black',
+      eyes: 'blue'
+    }
+  }
+  
+  const USER_2 = {
+    name: 'Sarah',
+    age: 21,
+    hobby: 'cars',
+    traits: {
+      eyes: 'green',
+    }
+  }
 //也可以在这里先取出屏幕的宽高
 var widthWin = Dimensions.get('window').width;
 var heightWin = Dimensions.get('window').Height;
@@ -28,6 +47,56 @@ export default class SetSaying extends Component{
             showMindPop:false,
         }
     }
+
+    setObjectValue = async (value) => {
+        try {
+          const jsonValue = JSON.stringify(value)
+          await AsyncStorage.setItem('@key', jsonValue)
+        } catch(e) {
+          // save error
+        }
+      
+        console.log('setDone.')
+      }
+
+      
+
+
+    getMyObject = async () => {
+        // console.log(1);
+        try {
+            console.log(2);
+            await AsyncStorage.setItem('@MyApp_user', JSON.stringify(USER_1))
+            console.log(a);
+            // merge USER_2 into saved USER_1
+            await AsyncStorage.mergeItem('@MyApp_user', JSON.stringify(USER_2))
+            console.log(b);
+            // read merged item
+            const currentUser = await AsyncStorage.getItem('@MyApp_user')
+            console.log(c);
+            console.log(currentUser)
+        //   console.log(4);
+        //   console.log(StorageUtil.get("sayingkey"));
+        //   const jsonValue = await AsyncStorage.getItem('@key');
+        //   console.log(2);
+
+        //   console.log(JSON.parse(jsonValue));
+        //   return jsonValue != null ? JSON.parse(jsonValue) : null
+        } catch(e) {
+            console.log(3);
+          // read error
+        }
+        console.log('getDone.')
+      }
+
+      componentDidMount(){
+        //   this.setObjectValue([{"1":"2"}]).then(
+        //     this.getMyObject()
+        //   );
+        //   const sayings=this.getMyObject();
+         this.getMyObject();
+
+      }
 
     _openTypeDialog() {
         this.setState({showMindPop: !this.state.showMindPop})

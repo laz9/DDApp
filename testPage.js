@@ -19,6 +19,20 @@ export default class TestCustomAlert extends Component {
     }
 
     render() {
+        loginButton = <Button
+                    onPress={this._onPressLogin}
+                    title="Login"/>
+ 
+    logoutButton = <Button
+                    onPress={this._onPressLogout}
+                    title="Logout"/>
+ 
+    return (
+      <View style={styles.container}>
+        <Text> {loginStatus} </Text>
+        {this.state.currentUserId !== undefined ? logoutButton : loginButton}
+      </View>
+    );
 
         return (
             <View style={{flex: 1}}>

@@ -9,14 +9,11 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 var sayings = require("../data/sayings.json");
+// console.log(sayings);
 
 var widthWin=Dimensions.get("window").width;
 var heightWin=Dimensions.get("window").height;
 var heigthBar=60;
-
-
-
-
 
 
 export default class ShowSayingList extends Component{
@@ -25,11 +22,31 @@ export default class ShowSayingList extends Component{
     constructor(props){
         super(props);
     }
+
+    setObjectValue = async (value) => {
+        try {
+          const jsonValue = JSON.stringify(value)
+          await AsyncStorage.setItem('sayingkey', jsonValue)
+        } catch(e) {
+          // save error
+        }
+      
+        console.log('setDone.')
+      }
+
+      componentDidMount(){
+          this.setObjectValue(sayings);
+        //   console.log(sayings);
+      }
    
     
 
 
    render(){
+    // console.log(sayings);
+    // console.log(sayings[0]);
+
+
         return (
             <View style={{flex:1,justifyContent:"space-between",alignItems:'center',flexDirection:'column'}}>   
             <View style={styles.barView}>
