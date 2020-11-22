@@ -13,9 +13,13 @@ import testPage from './testPage'
 import Login from './src/loginRegister/Login'
 import Register from './src/loginRegister/Register'
 import Profile from './src/loginRegister/Profile'
+import SetDiary from './src/diary/SetDiary'
+import SearchDiary from "./src/diary/SearchDiary"
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+
 
 const Tab = createBottomTabNavigator();
-
+// 个人页面导航
 const MineStack=createStackNavigator();
 function MineStackScreen(){
   return (
@@ -60,24 +64,40 @@ function MineStackScreen(){
 }
 
 
-const LoginRegisterStack=createStackNavigator();
-function LoginRegisterStackScreen(){
+
+
+// 日记页面导航
+const DairyStack=createStackNavigator();
+function DairyStackScreen(){
   return (
-    <LoginRegisterStack.Navigator>
-      <LoginRegisterStack.Screen name="infocard"
-      component={MineScreen} options={{headerShown:false}}/>
-      <LoginRegisterStack.Screen name="login"
-      component={Login} 
-      options={{  }}
+    <DairyStack.Navigator>
+      <DairyStack.Screen name="diary"
+      component={DiaryScreen} options={{headerShown:false}}/>
+       <DairyStack.Screen name="setdiary"
+      component={SetDiary} 
+      options={{ 
+        headerShown:false 
+       }}
       />
-      <LoginRegisterStack.Screen name="register"
-      component={Register} options={{ }}/>
-    </LoginRegisterStack.Navigator>
+      <DairyStack.Screen name="searchdiary"
+      component={SearchDiary} options={{headerShown:false}}/>
+      {/* <DairyStack.Screen name="register"
+      component={Register} options={{ 
+        headerTitle:(
+          <Text style={{flex:1,textAlign:'center'}}>注册</Text>
+        ),
+      }}
+      /> */}
+      
+    </DairyStack.Navigator>
+    
   );
 }
 
 
 
+
+// 测试页面导航
 const testStack=createStackNavigator();
 function testStackScreen(){
   return (
@@ -90,8 +110,8 @@ function testStackScreen(){
   );
 }
 
+
 export default function App() {
-    console.log("aaaaaaaaaaaaaaaaaaaaa");
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -166,7 +186,7 @@ export default function App() {
       >
         <Tab.Screen name="习惯" component={CustomScreen} options={{ headerShown: false }} />
         <Tab.Screen name="统计" component={testStackScreen}  options={{ headerShown: false }}/>
-        <Tab.Screen name="日记" component={DiaryScreen}  options={{ headerShown: false }} />
+        <Tab.Screen name="日记" component={DairyStackScreen}  options={{ headerShown: false }} />
         <Tab.Screen name="我的" component={MineStackScreen}  options={{ headerShown: false }}/>
       </Tab.Navigator>
     </NavigationContainer>

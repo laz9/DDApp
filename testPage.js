@@ -1,9 +1,10 @@
 import React, {Component} from "react";
-import {StyleSheet, Text, TouchableHighlight, View,TextInput} from 'react-native';
+import {StyleSheet, Text, TouchableHighlight, View,TextInput,PermissionsAndroid} from 'react-native';
 import CustomAlertDialog from "./src/sayings/CustomAlertDialog";
 import StorageUtil from './src/utils/StorageUtil'
+import { init, Geolocation ,setLocatingWithReGeocode} from "react-native-amap-geolocation";
 
-const typeArr = ["平静","开心", "焦虑", "无聊","悲伤","恐惧","生气","激动","期待"];
+
 
 export default class TestCustomAlert extends Component {
     constructor(props) {
@@ -11,10 +12,47 @@ export default class TestCustomAlert extends Component {
         this.state = {
             text1:"",
             text2:"",
-            text3:""
+            text3:"",
+            provinceName: "data.province",
+            cityName: "data.city",
+            areaName: "data.district",
         }
     }
-    
+
+
+  async componentDidMount() {
+        if (Platform.OS === "android") {
+            await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION);
+        }else{
+            setLocatingWithReGeocode(true)
+        }
+        await init({
+            ios: "9bd6c82e77583020a73ef35f59d0c759",
+            android: "ade5ca7ede1c4d37a2ad89372b1c01b7"
+        });
+        this.getCurrentPosition()
+    }
+
+        getCurrentPosition = () => {
+        Geolocation.getCurrentPosition(
+            position => this.updateLocationState(position),
+            error => this.updateLocationState(error)
+        );
+    };
+
+    updateLocationState(location) {
+        if (location) {
+            location.updateTime = new Date().toLocaleString();
+            let data = location.location
+            // console.log(data);
+            this.setState({
+                provinceName: data.province,
+                cityName: data.city,
+                areaName: data.district,
+            });
+            console.log(this.state.areaName+this.state.cityName+this.state.provinceName);
+        }
+    }
     
 
     _saveData(){

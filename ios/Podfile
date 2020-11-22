@@ -8,6 +8,8 @@ target 'DDApp' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'react-native-amap-geolocation', :path => '../node_modules/react-native-amap-geolocation'
+
   target 'DDAppTests' do
     inherit! :complete
     # Pods for testing

@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { Text, View,Image, Button,ScrollView } from 'react-native';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 
-var dairy = require("../data/dairy.json");
-
-
+var dairy = require("../data/diary.json");
 
 var date = new Date();
 var nowyear = date.getFullYear().toString();
@@ -30,7 +28,6 @@ var todaydairy={
         ]
 }
 
-console.log(dairy);
 
 
 export default class DiaryScreen extends Component  {
@@ -41,10 +38,16 @@ export default class DiaryScreen extends Component  {
     }
   }
 
-  UNSAFE_componentWillMount(){
-    if(this.state.addtoday){
+  // UNSAFE_componentWillMount()
+  componentDidMount()
+  {
+    console.log(this.state.addtoday);
+    if(!this.state.addtoday){
       dairy.unshift(todaydairy);
-      this.setState({addtoday:true})
+      console.log(1);
+      this.setState({addtoday:!this.state.addtoday})
+      console.log(this.state.addtoday);
+
     }
 
   }
@@ -53,7 +56,6 @@ export default class DiaryScreen extends Component  {
   _renderItem=({item})=>{
     var viewtimeline=[];
 
-    // console.log(item);
     if(item.time){
       // 渲染第一个内容
       viewtimeline.push(
@@ -78,10 +80,8 @@ export default class DiaryScreen extends Component  {
       }
       
       viewtimeline.push(<View style={{marginBottom:20}}></View>);
-      // console.log(viewtimeline);
     }
     
-   
     return (
 
       <View style={{alignItems:"center",marginTop:20}}>
@@ -113,8 +113,8 @@ export default class DiaryScreen extends Component  {
             height:36,
             width:150,
             marginTop:15,
-            elevation:-2
           }}
+          onPress={()=>this.props.navigation.navigate("setdiary")}
           >
             <Text style={{color:"#00bfff",fontWeight:"100",fontSize:12}}>去记录一下吧~</Text>
           </TouchableOpacity>:
@@ -149,7 +149,9 @@ export default class DiaryScreen extends Component  {
                 <View><Text style={{fontSize:30}}>日记</Text></View>
                 <View style={{flexDirection:'row'}}>
                 <View><Image style={{width:30,height:30,marginRight:10}} source={require('../../img/diarysetting.png')}></Image></View>
-                <View><Image style={{width:30,height:30}} source={require('../../img/diarysearch.png')}></Image></View>
+                <TouchableOpacity
+                  onPress={()=>this.props.navigation.navigate("searchdiary")}
+                ><Image style={{width:30,height:30}} source={require('../../img/diarysearch.png')}></Image></TouchableOpacity>
                 </View>
               </View>
 

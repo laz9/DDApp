@@ -13,7 +13,6 @@ var month = (date.getMonth()+1).toString();
 var day = date.getDate().toString();
 var hour =  date.getHours().toString();
 var minute = date.getMinutes().toString();
-console.log(year+" "+month+" "+day);
  
 
 function getDiffDate(year,month,day) {
@@ -59,7 +58,6 @@ export default class MineScreen extends Component{
    
   
     if(!this.state.islogin){
-      console.log("4");
       this.setState({infocardhint:"您还未登录"});
     }
     else if(hour>=4&&hour<8){
@@ -91,7 +89,6 @@ export default class MineScreen extends Component{
 
 
   render(){
-    console.log(this.state.islogin);
 
 
   return (

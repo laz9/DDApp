@@ -63,7 +63,6 @@ export default class SetSaying extends Component{
 
 
     getMyObject = async () => {
-        // console.log(1);
         try {
             console.log(2);
             await AsyncStorage.setItem('@MyApp_user', JSON.stringify(USER_1))
