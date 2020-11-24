@@ -1,6 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React, { Component } from 'react';
-import { Text, View,StyleSheet,Image,TouchableHighlight, Button,Dimensions } from 'react-native';
+import { Text, View,StyleSheet,Image,TouchableHighlight, Button,Dimensions,Share } from 'react-native';
 import showSayingList from '../sayings/ShowSayingList'
 import { NavigationContainer } from '@react-navigation/native';
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
@@ -193,21 +193,38 @@ export default class MineScreen extends Component{
             {/* 底部按钮 */}
           <View style={styles.buttomView}>
             <View style={{flexDirection:'row',justifyContent:'space-around'}}>
-              <View style={{alignItems:'center'}}><Image style={{width:bottomIconHW,height:bottomIconHW}} source={require('../../img/mine_buttomimg1.png')}></Image>
-                <Text style={{color:"#888",marginTop:5}}>心愿清单</Text></View>
-              <View style={{alignItems:'center'}}><Image style={{width:bottomIconHW,height:bottomIconHW}} source={require('../../img/mine_buttomimg2.png')}></Image>
-                <Text style={{color:"#888",marginTop:5}}>闹钟</Text></View>
-              <View style={{alignItems:'center'}}><Image style={{width:bottomIconHW,height:bottomIconHW}} source={require('../../img/mine_buttomimg3.png')}></Image>
-                <Text style={{color:"#888",marginTop:5}}>心情指数</Text></View>
-              <View style={{alignItems:'center'}}><Image style={{width:bottomIconHW,height:bottomIconHW}} source={require('../../img/mine_buttomimg4.png')}></Image>
-                <Text style={{color:"#888",marginTop:5}}>分享</Text></View>
+              <TouchableOpacity style={styles.bottomView}><Image style={{width:bottomIconHW,height:bottomIconHW}} source={require('../../img/mine_buttomimg1.png')}></Image>
+                <Text style={{color:"#888",marginTop:5}}>心愿清单</Text></TouchableOpacity>
+              <TouchableOpacity style={styles.bottomView}><Image style={{width:bottomIconHW,height:bottomIconHW}} source={require('../../img/mine_buttomimg2.png')}></Image>
+                <Text style={{color:"#888",marginTop:5}}>闹钟</Text></TouchableOpacity>
+              <TouchableOpacity style={styles.bottomView}><Image style={{width:bottomIconHW,height:bottomIconHW}} source={require('../../img/mine_buttomimg3.png')}></Image>
+                <Text style={{color:"#888",marginTop:5}}>心情指数</Text></TouchableOpacity>
+              <TouchableOpacity style={styles.bottomView}><Image style={{width:bottomIconHW,height:bottomIconHW}} source={require('../../img/日程.png')}></Image>
+                <Text style={{color:"#888",marginTop:5}}>倒数日</Text></TouchableOpacity>
             </View>
             <View style={{flexDirection:'row',justifyContent:'space-around'}}>
-              <View style={{alignItems:'center'}}><Image style={{width:36,height:36}} source={require('../../img/mine_buttomimg5.png')}></Image>
-              <Text style={{color:"#888",marginTop:5}}>设置</Text></View>
-              <View style={{alignItems:'center'}}><Text>   </Text></View>
-              <View style={{alignItems:'center'}}><Text>   </Text></View>
-              <View style={{alignItems:'center'}}><Text>   </Text></View>
+            <TouchableOpacity 
+                onPress={()=>this.props.navigation.navigate("lifeselect")}
+                style={styles.bottomView}><Image style={{width:bottomIconHW,height:bottomIconHW}} source={require('../../img/波形图.png')}></Image>
+                <Text style={{color:"#888",marginTop:5}}>人生电量</Text></TouchableOpacity>
+            <TouchableOpacity
+              onPress={()=>{
+                Share.share({
+                  title: '滴点APP测试中',
+                  message: '滴点APP测试中',
+                  url: '滴点APP测试中'
+                })
+              }}
+            style={styles.bottomView}><Image style={{width:bottomIconHW,height:bottomIconHW}} source={require('../../img/mine_buttomimg4.png')}></Image>
+                <Text style={{color:"#888",marginTop:5}}>分享</Text>
+                </TouchableOpacity>
+              <TouchableOpacity style={styles.bottomView}><Image style={{width:36,height:36}} source={require('../../img/mine_buttomimg5.png')}></Image>
+              <Text style={{color:"#888",marginTop:5}}>设置</Text></TouchableOpacity>
+              <View style={styles.bottomView}>
+                {/* <Image style={{width:bottomIconHW,height:bottomIconHW}} source={require('../../img/波形图.png')}></Image>
+                <Text style={{color:"#888",marginTop:5}}>人生电量</Text> */}
+                </View>
+                
             </View>
 
           </View>
@@ -244,6 +261,10 @@ const styles = StyleSheet.create({
       marginTop:-80,
       elevation: 5,  //  设置阴影角度，通过这个设置有无阴影（这个是最重要的，决定有没有阴影）
       shadowColor:'#444'
+    },
+    bottomView:{
+      alignItems:"center",
+      width:100
     },
    
     sayingcard:{

@@ -15,7 +15,9 @@ import Register from './src/loginRegister/Register'
 import Profile from './src/loginRegister/Profile'
 import SetDiary from './src/diary/SetDiary'
 import SearchDiary from "./src/diary/SearchDiary"
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import LifeGridPage from "./src/lifePower/LifeGridPage"
+import LifePowerPage from "./src/lifePower/LifePowerPage"
+import LifeSelectPage from "./src/lifePower/LifeSelectPage"
 
 
 const Tab = createBottomTabNavigator();
@@ -56,6 +58,37 @@ function MineStackScreen(){
         headerTitle:(
           <Text style={{flex:1,textAlign:'center'}}>个人资料</Text>
         ),
+      }}
+      />
+      <MineStack.Screen name="lifegrid"
+      component={LifeGridPage} options={{ 
+        headerTitle:(
+          <Text style={{flex:1,textAlign:'center'}}>人生小格</Text>
+        ),
+      }}
+      />
+      <MineStack.Screen name="lifepower"
+      component={LifePowerPage} options={{ 
+        headerTitle:(
+          <Text style={{flex:1,textAlign:'center'}}>人生电量</Text>
+        ),
+      }}
+      />
+      <MineStack.Screen name="lifeselect"
+      component={LifeSelectPage} options={{ 
+        headerTitle:(
+          <Text style={{flex:1,textAlign:'center'}}> </Text>
+        ),
+        headerStyle:{
+          // 去除标题的阴影
+          shadowOpacity: 0,    //修改的地方
+          shadowRadius: 0,
+          shadowOffset: {
+            height: 0,
+          },
+          elevation: 0,
+        }
+        
       }}
       />
     </MineStack.Navigator>
@@ -122,44 +155,44 @@ export default function App() {
             if (route.name === '习惯') {
                 if(focused){
                  return (
-                    <Image style={styles.tabBarIcon} source={require('./img/page1_2.png')}/>
+                    <Image style={styles.tabBarIcon} source={require('./img/习惯0.png')}/>
                 );
                 }else{
                      return (
-                    <Image style={styles.tabBarIcon} source={require('./img/page1_1.png')}/>
+                    <Image style={styles.tabBarIcon} source={require('./img/习惯.png')}/>
                 );
                 }
               
             } else if (route.name === '统计') {
                 if(focused){
                 return (
-                    <Image style={styles.tabBarIcon} source={require('./img/page2_2.png')}/>
+                    <Image style={styles.tabBarIcon} source={require('./img/统计0.png')}/>
                 );
                 }else{
                      return (
-                    <Image style={styles.tabBarIcon} source={require('./img/page2_1.png')}/>
+                    <Image style={styles.tabBarIcon} source={require('./img/统计.png')}/>
                 );
                 }
              
             }else if (route.name === '日记') {
               if(focused){
               return (
-                  <Image style={styles.tabBarIcon} source={require('./img/page3_2.png')}/>
+                  <Image style={styles.tabBarIcon} source={require('./img/日记0.png')}/>
               );
               }else{
                    return (
-                  <Image style={styles.tabBarIcon} source={require('./img/page3_1.png')}/>
+                  <Image style={styles.tabBarIcon} source={require('./img/日记.png')}/>
               );
               }
            
           }else if (route.name === '我的') {
             if(focused){
             return (
-                <Image style={styles.tabBarIcon} source={require('./img/page4_2.png')}/>
+                <Image style={styles.tabBarIcon} source={require('./img/我的0.png')}/>
             );
             }else{
                  return (
-                <Image style={styles.tabBarIcon} source={require('./img/page4_1.png')}/>
+                <Image style={styles.tabBarIcon} source={require('./img/我的.png')}/>
             );
             }
          
@@ -170,7 +203,8 @@ export default function App() {
           },
         })}
         tabBarOptions={{
-          activeTintColor: '#33cc99',
+          // activeTintColor: '#33cc99',
+          activeTintColor: '#00bfff',
           inactiveTintColor: 'gray',
           style: {
             backgroundColor: '#fff', // TabBar 背景色
