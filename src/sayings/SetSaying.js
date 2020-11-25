@@ -64,16 +64,16 @@ export default class SetSaying extends Component{
 
     getMyObject = async () => {
         try {
-            console.log(2);
+            // console.log(2);
             await AsyncStorage.setItem('@MyApp_user', JSON.stringify(USER_1))
-            console.log(a);
+            // console.log(a);
             // merge USER_2 into saved USER_1
             await AsyncStorage.mergeItem('@MyApp_user', JSON.stringify(USER_2))
-            console.log(b);
+            // console.log(b);
             // read merged item
             const currentUser = await AsyncStorage.getItem('@MyApp_user')
-            console.log(c);
-            console.log(currentUser)
+            // console.log(c);
+            // console.log(currentUser)
         //   console.log(4);
         //   console.log(StorageUtil.get("sayingkey"));
         //   const jsonValue = await AsyncStorage.getItem('@key');
@@ -82,7 +82,7 @@ export default class SetSaying extends Component{
         //   console.log(JSON.parse(jsonValue));
         //   return jsonValue != null ? JSON.parse(jsonValue) : null
         } catch(e) {
-            console.log(3);
+            // console.log(3);
           // read error
         }
         console.log('getDone.')

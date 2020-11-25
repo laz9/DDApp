@@ -41,12 +41,12 @@ export default class DiaryScreen extends Component  {
   // UNSAFE_componentWillMount()
   componentDidMount()
   {
-    console.log(this.state.addtoday);
+    // console.log(this.state.addtoday);
     if(!this.state.addtoday){
       dairy.unshift(todaydairy);
-      console.log(1);
+      // console.log(1);
       this.setState({addtoday:!this.state.addtoday})
-      console.log(this.state.addtoday);
+      // console.log(this.state.addtoday);
 
     }
 

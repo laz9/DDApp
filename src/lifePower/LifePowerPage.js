@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View ,Button} from 'react-native';
 
 
-export default class StatisticScreen extends Component  {
+export default class LifePowerPage extends Component  {
     constructor(){
       super();
       this.state={

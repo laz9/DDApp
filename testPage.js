@@ -50,7 +50,7 @@ export default class TestCustomAlert extends Component {
                 cityName: data.city,
                 areaName: data.district,
             });
-            console.log(this.state.areaName+this.state.cityName+this.state.provinceName);
+            // console.log(this.state.areaName+this.state.cityName+this.state.provinceName);
         }
     }
     

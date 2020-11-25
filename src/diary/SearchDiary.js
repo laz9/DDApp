@@ -112,9 +112,9 @@ export default class SearchDiary extends Component  {
     }
 
     UNSAFE_componentWillMount(){
-        console.log(this.state.showMode);
+        // console.log(this.state.showMode);
         if(this.state.showMode===1){
-            console.log(this.state.showMode+2);
+            // console.log(this.state.showMode+2);
 
             showView=<View>
             {/* 历史记录和清除提示区域 */}

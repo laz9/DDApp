@@ -63,7 +63,7 @@ function MineStackScreen(){
       <MineStack.Screen name="lifegrid"
       component={LifeGridPage} options={{ 
         headerTitle:(
-          <Text style={{flex:1,textAlign:'center'}}>人生小格</Text>
+          <Text style={{flex:1,textAlign:'center'}}>人生格子</Text>
         ),
       }}
       />
@@ -76,17 +76,20 @@ function MineStackScreen(){
       />
       <MineStack.Screen name="lifeselect"
       component={LifeSelectPage} options={{ 
-        headerTitle:(
-          <Text style={{flex:1,textAlign:'center'}}> </Text>
-        ),
+        headerTitle:"",
+        
+        headerTintColor: '#fff',
+      
         headerStyle:{
           // 去除标题的阴影
-          shadowOpacity: 0,    //修改的地方
-          shadowRadius: 0,
-          shadowOffset: {
-            height: 0,
-          },
-          elevation: 0,
+          // shadowOpacity: 0,    //修改的地方
+          // shadowRadius: 0,
+          // shadowOffset: {
+          //   height: 0,
+          // },
+          backgroundColor:"#000",
+          elevation: 5,
+          opacity:0.9,
         }
         
       }}
