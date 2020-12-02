@@ -290,6 +290,7 @@ export class HcdWaveView extends Component {
       )
     }
   }
+  
 
   typeView() {
     if (this.props.type === 'dc') {

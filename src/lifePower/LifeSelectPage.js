@@ -23,6 +23,7 @@ export default class LifeSelectPage extends Component  {
       };
     }
 
+
     _changeDate(){
         this.setState({dateSet:false});
 
