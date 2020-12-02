@@ -32,6 +32,7 @@ export default class LifeGridPage extends Component  {
         this.setState({tableData:tableDataTemp});
     }
 
+    
     render(){
         return (
             // <View style={{justifyContent:"space-around",flex:1}}>

@@ -6,6 +6,7 @@ import {
 
 import { HcdWaveView } from '../utils/HcdWaveView'
 
+
 export default class App extends Component {
   render() {
     return (
@@ -16,7 +17,9 @@ export default class App extends Component {
           powerPercent = {76}
           type="dc"
           style = {{backgroundColor:'#FF7800'}}></HcdWaveView>
-        
+
+
+  
       </View>
     )
   }
@@ -30,3 +33,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   }
 });
+
+

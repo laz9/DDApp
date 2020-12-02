@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {
   View,
-
 } from 'react-native';
 import {Surface,Shape,Path,LinearGradient,Text} from '@react-native-community/art';
+
 
 export class HcdWaveView extends Component {
   static defaultProps = {
@@ -142,7 +142,8 @@ export class HcdWaveView extends Component {
           x={this.props.surfaceHeigth / 2} 
           y={this.props.surfaceHeigth / 2 + 10} 
           fill="#FFFFFF"
-          font={`12px "Helvetica Neue", "Helvetica", Arial`}>汽车当前电量</Text>
+
+          font={`12px "Helvetica Neue", "Helvetica", Arial`}>当前电量</Text>
       </Surface>
     </View>
   }
