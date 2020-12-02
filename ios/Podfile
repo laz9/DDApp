@@ -10,6 +10,8 @@ target 'DDApp' do
 
   pod 'react-native-amap-geolocation', :path => '../node_modules/react-native-amap-geolocation'
 
+  pod 'ReactNativeART', :path => '../node_modules/@react-native-community/art'
+
   target 'DDAppTests' do
     inherit! :complete
     # Pods for testing
