@@ -18,6 +18,7 @@ import SearchDiary from "./src/diary/SearchDiary"
 import LifeGridPage from "./src/lifePower/LifeGridPage"
 import LifePowerPage from "./src/lifePower/LifePowerPage"
 import LifeSelectPage from "./src/lifePower/LifeSelectPage"
+import CountdownList from "./src/countdownDay/CountdownList"
 
 
 const Tab = createBottomTabNavigator();
@@ -73,6 +74,9 @@ function MineStackScreen(){
           <Text style={{flex:1,textAlign:'center'}}>人生电量</Text>
         ),
       }}
+      />
+      <MineStack.Screen name="countdownlist"
+      component={CountdownList} options={{headerShown:false}}
       />
       <MineStack.Screen name="lifeselect"
       component={LifeSelectPage} options={{ 

@@ -199,7 +199,9 @@ export default class MineScreen extends Component{
                 <Text style={{color:"#888",marginTop:5}}>闹钟</Text></TouchableOpacity>
               <TouchableOpacity style={styles.bottomView}><Image style={{width:bottomIconHW,height:bottomIconHW}} source={require('../../img/mine_buttomimg3.png')}></Image>
                 <Text style={{color:"#888",marginTop:5}}>心情指数</Text></TouchableOpacity>
-              <TouchableOpacity style={styles.bottomView}><Image style={{width:bottomIconHW,height:bottomIconHW}} source={require('../../img/日程.png')}></Image>
+              <TouchableOpacity 
+                onPress={()=>this.props.navigation.navigate("countdownlist")}
+                style={styles.bottomView}><Image style={{width:bottomIconHW,height:bottomIconHW}} source={require('../../img/日程.png')}></Image>
                 <Text style={{color:"#888",marginTop:5}}>倒数日</Text></TouchableOpacity>
             </View>
             <View style={{flexDirection:'row',justifyContent:'space-around'}}>
