@@ -1,10 +1,39 @@
 import React, { Component } from 'react';
-import { Text, View ,Button} from 'react-native';
+import { Text, View ,Button,Image} from 'react-native';
 import { range } from 'lodash'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 
 
 var nowmonth=false;
+var cdData=[
+  {
+      title:"讲座",
+      year:2020,
+      month:12,
+      day:7,
+  },
+  {
+      title:"生日",
+      year:2020,
+      month:12,
+      day:11,
+  },
+  {
+      title:"志愿活动",
+      year:2020,
+      month:12,
+      day:20,
+
+  },
+  {
+      
+      title:"双十二",
+      year:2020,
+      month:12,
+      day:12,
+  },
+  
+];
 export default class CountdownList extends Component  {
 
   
@@ -109,15 +138,40 @@ export default class CountdownList extends Component  {
       });
   }
 
+    _renderItem=({item})=>{
+      console.log("test");
+      return (
+      <View style={{width:360,backgroundColor:"#fff",justifyContent:"center",alignItems:"flex-start",borderRadius:15}}>
+        <View style={{margin:15}}><Text style={{color:"gray"}}>{item.title}</Text></View>
+        <View style={{flexDirection:"row"}}>
+          <View style={{width:100}}><Text>几天后</Text></View>
+          <View><Text>|</Text></View>
+          <View><Text>{item.year}年{item.month}月{item.day}日</Text></View>
+        </View>
+      </View>
+      );
+  }
+
     render(){
         return (
             <View style={{justifyContent:"flex-start",flex:1}}>
                 {/* 日历View */}
-                <View style={{flexDirection:"row",justifyContent:"flex-start",margin:20,height:50}}>
-                    {/* 月份标题 */}
+                <View>
+                   {/* 月份标题 */}
+                <View style={{flexDirection:"row",justifyContent:"flex-start",margin:10,marginTop:20 ,height:50}}>
+                      {/* 返回 */}
+                    <TouchableOpacity 
+                      style={{justifyContent:"flex-end",marginRight:10,height:45}}
+                      onPress={() => this.props.navigation.goBack()}>
+                     <View style={{backgroundColor:""}}><Image style={{width:30,height:30}} 
+                            source={require("../../img/返回.png")}  
+                        ></Image></View>
+                    </TouchableOpacity>
+                        {/* 当前月份 */}
                       <View style={{justifyContent:"flex-end"}}><Text
                         style={{fontSize:28,fontWeight:"bold"}}
                       >{this.state.year}年{this.state.month}月</Text></View>
+                      {/* 几天后 */}
                       <View style={{justifyContent:"flex-end"}}><Text
                         style={{fontSize:16,color:"gray"}}
                       >{this.state.dayDistance}天后</Text></View>
@@ -132,9 +186,23 @@ export default class CountdownList extends Component  {
                     <View style={{flexDirection:"column",justifyContent:"space-around"}}>
                         { this.renderWeekDays() }
                     </View>
+                    </View>
 
-
-               
+                    <View style={{justifyContent:"center",alignItems:"center",flex:1}}>
+                    <FlatList
+                  // data={[{key: 'a'}, {key: 'b'}]}
+                      keyExtractor={(item, index) => index.toString()}
+                      data={cdData}
+                      renderItem={this._renderItem}/>
+                      </View>
+                    {/* <View style={{width:360,backgroundColor:"#fff",justifyContent:"center",alignItems:"flex-start",borderRadius:15}}>
+                      <View style={{margin:15}}><Text style={{color:"gray"}}>标题标题</Text></View>
+                      <View style={{flexDirection:"row"}}>
+                        <View style={{width:100}}><Text>几天后</Text></View>
+                        <View><Text>|</Text></View>
+                        <View><Text>2020年12月12日</Text></View>
+                      </View>
+                    </View>                  */}
                
             </View>
         );
