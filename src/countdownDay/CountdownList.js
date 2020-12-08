@@ -6,18 +6,36 @@ import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 var nowmonth=false;
+let countdownViewHeight=66;
+var date = new Date();
+var year = date.getFullYear().toString();
+var month = (date.getMonth()+1).toString();
+var nowday = date.getDate();
+var hour =  date.getHours().toString();
+var minute = date.getMinutes().toString();
+
+function getDiffDate(year,month,day) {
+  let date1 = new Date();
+  let date2 = new Date();
+  date1 = new Date(year, month,day);
+  date2 = new Date(date2.getFullYear(), date2.getMonth()+1, date2.getDate());
+  const diff = date1.getTime() - date2.getTime();
+  const diffDate = diff / (24 * 60 * 60 * 1000);
+  return diffDate;
+}
+
 var cdData=[
   {
       title:"讲座",
       year:2020,
       month:12,
-      day:7,
+      day:8,
   },
   {
       title:"生日",
       year:2020,
       month:12,
-      day:11,
+      day:8,
   },
   {
       title:"志愿活动",
@@ -119,7 +137,11 @@ export default class CountdownList extends Component  {
 
     
     renderDays(week_days) {
+
       return week_days.map((day, index) => {
+
+
+
         if(day===1){
           nowmonth=!nowmonth;
         }
@@ -137,16 +159,33 @@ export default class CountdownList extends Component  {
           
         }
         else{
-          return (
-            <TouchableOpacity 
-              onPress={this.press.bind(this)}
-              key={index} 
-              style={{width:30}}
-    
-            >
-              <Text style={{textAlign:"center",fontSize:20,color:"#000",fontWeight:"bold"}}>{day.toString()}</Text>
-            </TouchableOpacity>	
-          );
+
+
+          if(nowday===day){
+              return (
+                <TouchableOpacity 
+                  onPress={this.press.bind(this)}
+                  key={index} 
+                  style={{width:30,backgroundColor:"#00bfff",borderRadius:20}}
+        
+                >
+                  <Text style={{textAlign:"center",fontSize:20,color:"#fff",fontWeight:"bold"}}>{day.toString()}</Text>
+                </TouchableOpacity>	
+              );
+           }
+          else{
+            return (
+              <TouchableOpacity 
+                onPress={this.press.bind(this)}
+                key={index} 
+                style={{width:30}}
+      
+              >
+                <Text style={{textAlign:"center",fontSize:20,color:"#000",fontWeight:"bold"}}>{day.toString()}</Text>
+              </TouchableOpacity>	
+            );
+
+          }
 
         }
      
@@ -167,20 +206,44 @@ export default class CountdownList extends Component  {
 
     _renderItem=({item})=>{
       console.log("test");
-      return (
-      <TouchableOpacity style={{marginVertical:5, justifyContent:"center",alignItems:"flex-start",borderRadius:15,flexDirection:"row"}}>
-        <View style={{justifyContent:"center",alignItems:"center",width:100}}>
-          <View style={{width:100}}><Text>几天后</Text></View>
+      var cdDay=getDiffDate(item.year,item.month,item.day);
+      if(cdDay<0){
+        return <View></View>
+      }
+      var cdHaveDaysView=[<View style={{justifyContent:"center",alignItems:"center",width:100,height:countdownViewHeight ,backgroundColor:"",flexDirection:"row"}}>
+      <View style={{width:40,backgroundColor:"",alignItems:"center",justifyContent:"center",height:30,marginBottom:5}}><Text style={{fontSize:24}}>{cdDay}</Text></View>
+      <View style={{width:30,backgroundColor:"",height:30,justifyContent:"center"}}><Text style={{color:"#777"}}>天后</Text></View>
+      </View>];
+      cdHaveDaysView.push(
+        <View style={{height:countdownViewHeight,justifyContent:"center",marginRight:10}}>
+          <Image style={{width:20,height:20}} source={require("../../img/旗帜.png")}></Image>
         </View>
+      );
+      var cdIsTodayView=[
+        <View style={{justifyContent:"center",alignItems:"center",width:100,height:countdownViewHeight ,backgroundColor:"",flexDirection:"row"}}>
+          <View style={{width:42,backgroundColor:"",alignItems:"flex-end",justifyContent:"flex-end",height:30}}><Text style={{fontSize:20}}>今天</Text></View>
+        </View>
+        ];
+      cdIsTodayView.push(
+        <View style={{height:countdownViewHeight,justifyContent:"center",marginRight:10}}>
+          <Image style={{width:20,height:20}} source={require("../../img/旗子.png")}></Image>
+        </View>
+      );
+     
+      return (
+      <TouchableOpacity 
+        onPress={() => this.props.navigation.navigate("countdowncard")}
+        style={{marginVertical:5 ,justifyContent:"flex-start",alignItems:"flex-start",borderRadius:15,flexDirection:"row"}}>
+         {cdDay==0?cdIsTodayView:cdHaveDaysView}
         
-        <View>
-        <View style={{margin:10,marginLeft:100}}>
+        <View style={{justifyContent:"center",backgroundColor:"",height:countdownViewHeight}}>
+        <View style={{}}>
           <Text style={{color:"black",fontSize:20,fontWeight:"bold"}}>{item.title}</Text>
           </View>
         <View style={{flexDirection:"row"}}>
-          <View style={{width:100}}><Text>倒数日</Text></View>
-          <View><Text>|</Text></View>
-          <View><Text>{item.year}年{item.month}月{item.day}日</Text></View>
+          <View style={{}}><Text style={{color:"gray"}}>倒数日</Text></View>
+          <View><Text style={{color:"gray"}}> | </Text></View>
+          <View><Text style={{color:"gray"}}>{item.year}年{item.month}月{item.day}日</Text></View>
         </View>
  
         </View>
@@ -193,7 +256,7 @@ export default class CountdownList extends Component  {
         return (
             <View style={{justifyContent:"flex-start",flex:1}}>
                 {/* 日历View */}
-                <View>
+                <View style={{elevation:2,shadowColor:"black",shadowOffset:2,backgroundColor:"",marginBottom:10}}>
                    {/* 月份标题 */}
                 <View style={{flexDirection:"row",justifyContent:"flex-start",margin:10,marginTop:20 ,height:50}}>
                       {/* 返回 */}
@@ -240,6 +303,7 @@ export default class CountdownList extends Component  {
                       <ActionButton
                           buttonColor="rgba(231,76,60,1)"
                           onPress={() => { console.log("hi")}}
+                          
                           />
               
                

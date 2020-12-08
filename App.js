@@ -19,6 +19,8 @@ import LifeGridPage from "./src/lifePower/LifeGridPage"
 import LifePowerPage from "./src/lifePower/LifePowerPage"
 import LifeSelectPage from "./src/lifePower/LifeSelectPage"
 import CountdownList from "./src/countdownDay/CountdownList"
+import AddCountdownDay from "./src/countdownDay/AddCountdownDay"
+import CountdownCard from "./src/countdownDay/CountdownCard"
 
 
 const Tab = createBottomTabNavigator();
@@ -77,6 +79,12 @@ function MineStackScreen(){
       />
       <MineStack.Screen name="countdownlist"
       component={CountdownList} options={{headerShown:false}}
+      />
+      <MineStack.Screen name="addcountdownlist"
+      component={AddCountdownDay} options={{headerShown:false}}
+      />
+      <MineStack.Screen name="countdowncard"
+      component={CountdownCard} options={{headerShown:false}}
       />
       <MineStack.Screen name="lifeselect"
       component={LifeSelectPage} options={{ 
