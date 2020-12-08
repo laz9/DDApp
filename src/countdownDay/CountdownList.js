@@ -32,6 +32,32 @@ var cdData=[
       month:12,
       day:12,
   },
+  {
+    title:"讲座",
+    year:2020,
+    month:12,
+    day:7,
+},
+{
+    title:"生日",
+    year:2020,
+    month:12,
+    day:11,
+},
+{
+    title:"志愿活动",
+    year:2020,
+    month:12,
+    day:20,
+
+},
+{
+    
+    title:"双十二",
+    year:2020,
+    month:12,
+    day:12,
+},
   
 ];
 export default class CountdownList extends Component  {
@@ -195,14 +221,29 @@ export default class CountdownList extends Component  {
                       data={cdData}
                       renderItem={this._renderItem}/>
                       </View>
-                    {/* <View style={{width:360,backgroundColor:"#fff",justifyContent:"center",alignItems:"flex-start",borderRadius:15}}>
-                      <View style={{margin:15}}><Text style={{color:"gray"}}>标题标题</Text></View>
-                      <View style={{flexDirection:"row"}}>
-                        <View style={{width:100}}><Text>几天后</Text></View>
-                        <View><Text>|</Text></View>
-                        <View><Text>2020年12月12日</Text></View>
-                      </View>
-                    </View>                  */}
+                   {/* 添加功能的悬浮按钮 */}
+                   <View 
+                   style={{
+                      // marginTop:-20,
+                      // marginBottom:20,
+                      // backgroundColor:"red",
+                      opacity:1,
+                      justifyContent:"flex-end",
+                   }}>
+                   <TouchableOpacity
+                    style={{
+                      width:50,
+                      height:50,
+                      borderRadius:50,
+                      backgroundColor:"#00bfff",
+                      // marginTop:-29,
+                      alignItems:"center",
+                      justifyContent:"center"
+                    }}
+                   >
+                     <Text style={{color:"#fff",fontSize:20}}>+</Text>
+                   </TouchableOpacity>
+                   </View>
                
             </View>
         );
