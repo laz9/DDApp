@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Text, View ,Button,Image} from 'react-native';
 import { range } from 'lodash'
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
-
+import ActionButton from 'react-native-action-button';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 var nowmonth=false;
 var cdData=[
@@ -167,14 +168,24 @@ export default class CountdownList extends Component  {
     _renderItem=({item})=>{
       console.log("test");
       return (
-      <View style={{width:360,backgroundColor:"#fff",justifyContent:"center",alignItems:"flex-start",borderRadius:15}}>
-        <View style={{margin:15}}><Text style={{color:"gray"}}>{item.title}</Text></View>
-        <View style={{flexDirection:"row"}}>
+      <TouchableOpacity style={{marginVertical:5, justifyContent:"center",alignItems:"flex-start",borderRadius:15,flexDirection:"row"}}>
+        <View style={{justifyContent:"center",alignItems:"center",width:100}}>
           <View style={{width:100}}><Text>几天后</Text></View>
+        </View>
+        
+        <View>
+        <View style={{margin:10,marginLeft:100}}>
+          <Text style={{color:"black",fontSize:20,fontWeight:"bold"}}>{item.title}</Text>
+          </View>
+        <View style={{flexDirection:"row"}}>
+          <View style={{width:100}}><Text>倒数日</Text></View>
           <View><Text>|</Text></View>
           <View><Text>{item.year}年{item.month}月{item.day}日</Text></View>
         </View>
-      </View>
+
+        </View>
+        
+      </TouchableOpacity>
       );
   }
 
@@ -215,6 +226,9 @@ export default class CountdownList extends Component  {
                     </View>
 
                     <View style={{justifyContent:"center",alignItems:"center",flex:1}}>
+                      <View 
+                       style={{backgroundColor:"#fff",width:360,borderRadius:20,marginBottom:10}}
+                      >
                     <FlatList
                   // data={[{key: 'a'}, {key: 'b'}]}
                       keyExtractor={(item, index) => index.toString()}
@@ -222,28 +236,12 @@ export default class CountdownList extends Component  {
                       renderItem={this._renderItem}/>
                       </View>
                    {/* 添加功能的悬浮按钮 */}
-                   <View 
-                   style={{
-                      // marginTop:-20,
-                      // marginBottom:20,
-                      // backgroundColor:"red",
-                      opacity:1,
-                      justifyContent:"flex-end",
-                   }}>
-                   <TouchableOpacity
-                    style={{
-                      width:50,
-                      height:50,
-                      borderRadius:50,
-                      backgroundColor:"#00bfff",
-                      // marginTop:-29,
-                      alignItems:"center",
-                      justifyContent:"center"
-                    }}
-                   >
-                     <Text style={{color:"#fff",fontSize:20}}>+</Text>
-                   </TouchableOpacity>
                    </View>
+                      <ActionButton
+                          buttonColor="rgba(231,76,60,1)"
+                          onPress={() => { console.log("hi")}}
+                          />
+              
                
             </View>
         );
