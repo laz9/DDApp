@@ -182,7 +182,7 @@ export default class CountdownList extends Component  {
           <View><Text>|</Text></View>
           <View><Text>{item.year}年{item.month}月{item.day}日</Text></View>
         </View>
-
+ 
         </View>
         
       </TouchableOpacity>
