@@ -80,7 +80,7 @@ function MineStackScreen(){
       <MineStack.Screen name="countdownlist"
       component={CountdownList} options={{headerShown:false}}
       />
-      <MineStack.Screen name="addcountdownlist"
+      <MineStack.Screen name="addcountdownday"
       component={AddCountdownDay} options={{headerShown:false}}
       />
       <MineStack.Screen name="countdowncard"

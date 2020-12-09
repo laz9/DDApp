@@ -35,13 +35,13 @@ var cdData=[
       title:"生日",
       year:2020,
       month:12,
-      day:8,
+      day:9,
   },
   {
       title:"志愿活动",
       year:2020,
       month:12,
-      day:20,
+      day:10,
 
   },
   {
@@ -49,33 +49,33 @@ var cdData=[
       title:"双十二",
       year:2020,
       month:12,
-      day:12,
+      day:11,
   },
   {
     title:"讲座",
     year:2020,
     month:12,
-    day:7,
+    day:12,
 },
 {
-    title:"生日",
+    title:"周日",
     year:2020,
     month:12,
-    day:11,
+    day:13,
 },
 {
     title:"志愿活动",
     year:2020,
     month:12,
-    day:20,
+    day:18,
 
 },
 {
     
-    title:"双十二",
+    title:"圣诞节",
     year:2020,
     month:12,
-    day:12,
+    day:25,
 },
   
 ];
@@ -232,6 +232,7 @@ export default class CountdownList extends Component  {
      
       return (
       <TouchableOpacity 
+        key={item}
         onPress={() => this.props.navigation.navigate("countdowncard")}
         style={{marginVertical:5 ,justifyContent:"flex-start",alignItems:"flex-start",borderRadius:15,flexDirection:"row"}}>
          {cdDay==0?cdIsTodayView:cdHaveDaysView}
@@ -302,7 +303,7 @@ export default class CountdownList extends Component  {
                    </View>
                       <ActionButton
                           buttonColor="rgba(231,76,60,1)"
-                          onPress={() => { console.log("hi")}}
+                          onPress={() => this.props.navigation.navigate("addcountdownday")}
                           
                           />
               
